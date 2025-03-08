@@ -1,5 +1,4 @@
-import { isPlatformBrowser } from '@angular/common';
-import { Component, ElementRef, Inject, OnInit, PLATFORM_ID, ViewChild, NgZone } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as THREE from 'three';
 
 @Component({
@@ -18,17 +17,9 @@ export class SolarSystemComponent implements OnInit{
   planets: { mesh: THREE.Mesh, distance: number, speed: number}[] = [];
   textureLoader = new THREE.TextureLoader();
 
-  constructor(@Inject(PLATFORM_ID) private platformId: object, private ngZone: NgZone) {}
-
-
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      this.initScene();
-      this.ngZone.runOutsideAngular(() => this.animate());
-      this.animate();
-    } else {
-      console.warn('Skipping Three.js initialization (SSR detected)');
-    }
+    this.initScene();
+    this.animate();
   }
 
   initScene(){
