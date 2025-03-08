@@ -34,7 +34,7 @@ export class SolarSystemComponent implements OnInit{
     this.camera.position.set(0, 20, 400); // Adjusted position
   
     // Creating sun (Larger for visibility)
-    const sunTexture = this.textureLoader.load('../../assets/textures/sun.jpg');
+    const sunTexture = this.textureLoader.load('assets/textures/sun.jpg');
     const sunMaterial = new THREE.MeshBasicMaterial({ map: sunTexture });
     this.sun = new THREE.Mesh(new THREE.SphereGeometry(40, 64, 64), sunMaterial);
     this.scene.add(this.sun);
@@ -51,7 +51,7 @@ export class SolarSystemComponent implements OnInit{
   }
   
   addPlanet(distance: number, size: number, texture: string, speed: number){
-    const planetTexture = this.textureLoader.load(`../../assets/textures/${texture}`);
+    const planetTexture = this.textureLoader.load(`assets/textures/${texture}`);
     const planetMaterial = new THREE.MeshBasicMaterial({ map: planetTexture });
     const planet = new THREE.Mesh(new THREE.SphereGeometry(size * 2, 64, 64), planetMaterial);
     planet.position.set(distance, 0, 0);
